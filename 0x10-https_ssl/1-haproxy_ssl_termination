@@ -35,7 +35,7 @@ defaults
 
 frontend myfrontend
 	bind *:80
-	bind *:443 ssl crt /etc/haproxy/certs/www.sallymohamed.tech.pem
+	bind *:443 ssl crt /etc/letsencrypt/live/www.sallymohamed.tech/fullchain.pem
 	default_backend myservers
 
 backend myservers
