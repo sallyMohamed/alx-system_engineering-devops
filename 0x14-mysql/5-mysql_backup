@@ -6,13 +6,10 @@ DB_PASSWORD="$DB_PASSWORD"  # Read the password from the environment variable
 # MySQL dump command (suppressing the warning)
 mysqldump -u "$DB_USER" -p"$DB_PASSWORD" --all-databases > backup.sql 2>/dev/null
 
-# Get the current date for the archive name
-current_date=$(date +"%d-%m-%Y")
-
 # Compress the dump into a tar.gz archive
-tar -czvf "$current_date.tar.gz" backup.sql
+tar -czvf backup.sql.tar.gz backup.sql
 
 # Remove the original dump file
 rm backup.sql
 
-echo "MySQL dump created and compressed as $current_date.tar.gz"
+echo "MySQL dump created and compressed as backup.sql.tar.gz"
