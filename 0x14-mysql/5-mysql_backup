@@ -1,3 +1,18 @@
- a compressed archive of a MySQL dump.
-mysqldump -uroot -p"$1" --all-databases > backup.sql
-tar -cvzf "$(date +%d-%m-%Y)".tar.gz backup.sql
+#!/bin/bash
+
+DB_USER="root"
+DB_PASSWORD="$DB_PASSWORD"  # Read the password from the environment variable
+
+# MySQL dump command (suppressing the warning)
+mysqldump -u "$DB_USER" -p"$DB_PASSWORD" --all-databases > backup.sql 2>/dev/null
+
+# Get the current date for the archive name
+current_date=$(date +"%d-%m-%Y")
+
+# Compress the dump into a tar.gz archive
+tar -czvf "$current_date.tar.gz" backup.sql
+
+# Remove the original dump file
+rm backup.sql
+
+echo "MySQL dump created and compressed as $current_date.tar.gz"
