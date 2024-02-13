@@ -26,7 +26,16 @@ def number_of_subscribers(subreddit):
         return 0
 
     try:
-        data = response.json()["data"]
-        return data["subscribers"]
+        data = response.json().get("data")
+        if data and "subscribers" in data:
+            return data["subscribers"]
+        else:
+            return 0
     except (KeyError, ValueError):
         return 0
+
+
+if __name__ == "__main__":
+    subreddit = input("Enter subreddit name: ")
+    subscribers = number_of_subscribers(subreddit)
+    print(f"The subreddit '{subreddit}' has {subscribers} subscribers.")
