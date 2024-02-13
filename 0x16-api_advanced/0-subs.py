@@ -22,11 +22,11 @@ def number_of_subscribers(subreddit):
     }
     response = requests.get(url, headers=headers, allow_redirects=False)
 
-    if response.status_code == requests.codes.not_found:
+    if response.status_code == 404:
         return 0
 
-    data = response.json().get("data")
-    if data and "subscribers" in data:
+    try:
+        data = response.json()["data"]
         return data["subscribers"]
-
-    return 0
+    except (KeyError, ValueError):
+        return 0
