@@ -36,6 +36,6 @@ def number_of_subscribers(subreddit):
 
 
 if __name__ == "__main__":
-    subreddit = input("Enter subreddit name: ")
+    subreddit = raw_input("Enter subreddit name: ")  # Use raw_input for Python 2 compatibility
     subscribers = number_of_subscribers(subreddit)
-    print(f"The subreddit '{subreddit}' has {subscribers} subscribers.")
+    print("The subreddit '{0}' has {1} subscribers.".format(subreddit, subscribers))
