@@ -16,7 +16,7 @@ def number_of_subscribers(subreddit):
     Returns:
         int: The number of subscribers or 0 if the subreddit doesn't exist.
     """
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = "https://www.reddit.com/r/" + subreddit + "/about.json"
     headers = {
         "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
     }
